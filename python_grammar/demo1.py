@@ -15,3 +15,8 @@ a[1].append(256)
 
 print(c)
 print(b)
+
+
+
+print(d)
+

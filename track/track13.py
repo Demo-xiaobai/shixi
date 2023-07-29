@@ -7,6 +7,14 @@ import threading
 from queue import Queue
 import time
 
+'''
+    逆行检测思路：
+        1、ROI区域：用射线法判断 点是否在ROI区域内
+        2、逆行判断： 先画出顺行方向向量 ，在计算 2帧之间连线中心的向量，再求夹角
+
+'''
+
+
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 def warning(img,x,y):  # 画出警告红叉
@@ -43,7 +51,7 @@ def track_goal(model,points):
     # normal_direction_points = np.array([[406,162],[360,376]])       # 顺行方向坐标   
     normal_direction_points = np.array([[252,212],[452,212]])
     normal_direction_vector =  torch.from_numpy(normal_direction_points[0] - normal_direction_points[1]) # 顺行向量 AB
-    while True:
+    while True:  # ！！！ 多线程没启动成功就是这里 没有加死循环导致 每次运行一次 就不再运行这里的代码了
         if np.size(frame_list) != 0:
                 results = model.track(frame_list,classes=[0,2,5,7],persist=True)
                 annotated_frame = results[0].plot(boxes=False,conf=False)
