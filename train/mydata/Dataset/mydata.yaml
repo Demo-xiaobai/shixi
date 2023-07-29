@@ -1,0 +1,5 @@
+train: "E:\\Test\\VsCode_Test\\Python\\yolo8\\train\\mydata\\Dataset\\train\\images"
+test: "E:\\Test\\VsCode_Test\\Python\\yolo8\\train\\mydata\\Dataset\\test\\images"
+val: "E:\\Test\\VsCode_Test\\Python\\yolo8\\train\\mydata\\Dataset\\val\\images"
+nc: 1
+names: ['cone']
